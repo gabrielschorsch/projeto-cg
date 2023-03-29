@@ -3,28 +3,25 @@
 
 using namespace std;
 
+int inicio = 0, fim = 0;
 
 MyFrame::MyFrame(QWidget *w): QFrame(w)
 {
 }
 
 void MyFrame::paintEvent(QPaintEvent *event){
-
-
     QFrame::paintEvent(event);
-    QPainter bluePen(this);
-    bluePen.setPen(QPen(Qt::blue,2));
+    QPainter pen(this);
+    pen.setPen(QPen(Qt::blue,2));
 
-    bluePen.drawRect(rect);
-
-    QPainter redPen(this);
-    redPen.setPen(QPen(Qt::red,2));
-   redPen.drawLine(rect.topLeft().x(), rect.topLeft().y(), rect.bottomRight().x(), rect.bottomRight().y());
+    pen.drawLine(inicio,inicio,inicio,fim);
+    pen.drawLine(inicio,inicio,fim,inicio);
+    pen.drawLine(fim,inicio,fim,fim);
+    pen.drawLine(inicio,fim,fim,fim);
 }
 
-
 void MyFrame::draw(){
-    rect.setCoords(20,20,80,80);
-
+    inicio += 5;
+    fim += 10;
     update();
 }
