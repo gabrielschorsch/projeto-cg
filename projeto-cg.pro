@@ -11,10 +11,12 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    matrix.cpp \
     myframe.cpp
 
 HEADERS += \
     mainwindow.h \
+    matrix.h \
     myframe.h
 
 FORMS += \

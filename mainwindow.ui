@@ -48,14 +48,66 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>250</y>
+      <x>70</x>
+      <y>80</y>
       <width>89</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
      <string>Desenhar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>160</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rotacionar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>120</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Redimensionar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>120</y>
+      <width>49</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fator: 1.5x</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>160</y>
+      <width>49</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>45º</string>
     </property>
    </widget>
   </widget>
@@ -79,6 +131,8 @@
    <container>1</container>
    <slots>
     <slot>draw()</slot>
+    <slot>rotateObject()</slot>
+    <slot>scaleObject()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -92,11 +146,43 @@
    <hints>
     <hint type="sourcelabel">
      <x>103</x>
-     <y>280</y>
+     <y>125</y>
     </hint>
     <hint type="destinationlabel">
      <x>280</x>
      <y>470</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>rotateObject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>189</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>274</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>frame</receiver>
+   <slot>scaleObject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>137</x>
+     <y>153</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>272</x>
+     <y>193</y>
     </hint>
    </hints>
   </connection>
