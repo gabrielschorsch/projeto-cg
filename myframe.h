@@ -20,6 +20,10 @@ public slots:
     void draw();
     void scaleObject();
     void rotateObject();
+    void moveWindow(int x, int y);
+
+    void moveWindowLeft();
+    void moveWindowRight();
 };
 
 #endif // MYFRAME_H

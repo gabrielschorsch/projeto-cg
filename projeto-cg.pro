@@ -12,12 +12,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matrix.cpp \
-    myframe.cpp
+    myframe.cpp \
+    window.cpp
 
 HEADERS += \
     mainwindow.h \
     matrix.h \
-    myframe.h
+    myframe.h \
+    window.h
 
 FORMS += \
     mainwindow.ui
