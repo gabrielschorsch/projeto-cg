@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QPoint>
 #include <QList>
+#include <QPen>
 
 
 class Matrix : QObject
@@ -20,6 +21,8 @@ public:
     void translate( float dx, float dy);
     void scale(float sx, float sy);
     void rotate(float angle);
+
+    void draw(QPen );
 
 };
 

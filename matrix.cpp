@@ -2,6 +2,7 @@
 #include "matrix.h"
 #include "iostream"
 #include <cmath>
+#define PI 3.14159
 
 using namespace std;
 
@@ -84,6 +85,7 @@ void Matrix::rotate(float angle){
         maxY=this->points[0].y();
 
 
+    angle = angle * PI / 180;
 
 
 
