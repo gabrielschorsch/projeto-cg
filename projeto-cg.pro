@@ -12,7 +12,6 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     matrix.cpp \
-    myframe.cpp \
     object.cpp \
     point.cpp \
     rect.cpp \
@@ -22,7 +21,6 @@ SOURCES += \
 HEADERS += \
     mainwindow.h \
     matrix.h \
-    myframe.h \
     object.h \
     point.h \
     rect.h \

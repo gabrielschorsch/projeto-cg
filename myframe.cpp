@@ -23,7 +23,6 @@ void MyFrame::paintEvent(QPaintEvent *event){
     QList<QPoint> normalizedPoints;
     QFrame::paintEvent(event);
     QPainter pen(this);
-    Window w;
     pen.setPen(QPen(Qt::blue,2));
 
     if(!displayFile.contains(&r)){
