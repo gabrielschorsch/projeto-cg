@@ -9,20 +9,18 @@
 #include <QPen>
 
 
-class Matrix : QObject
+class Matrix
 {
-    Q_OBJECT
-private:
 public:
-    QList<QPoint> points;
-    Matrix ();
-    Matrix(QList<QPoint> *mPoints);
-    void appendPoint(int x, int y);
-    void translate( float dx, float dy);
-    void scale(float sx, float sy);
-    void rotate(float angle);
-
-    void draw(QPen );
+    float matrix[3][3];
+    Matrix();
+    Matrix translate( float dx, float dy);
+    Matrix translate( float dx, float dy, float dz);
+    Matrix scale(float sx, float sy);
+    Matrix scale(float sx, float sy, float sz);
+    Matrix rotate(float angle);
+    Matrix rotate(float angle, int axis);
+    Matrix operator*(const Matrix& other) const;
 
 };
 

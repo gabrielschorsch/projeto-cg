@@ -13,12 +13,20 @@ SOURCES += \
     mainwindow.cpp \
     matrix.cpp \
     myframe.cpp \
+    object.cpp \
+    point.cpp \
+    rect.cpp \
+    transformations.cpp \
     window.cpp
 
 HEADERS += \
     mainwindow.h \
     matrix.h \
     myframe.h \
+    object.h \
+    point.h \
+    rect.h \
+    transformations.h \
     window.h
 
 FORMS += \

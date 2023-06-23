@@ -8,6 +8,8 @@
 #include <QPainter>
 #include <QFrame>
 #include <QPoint>
+#include <QList>
+#include "object.h"
 
 
 class MyFrame : public QFrame
@@ -16,14 +18,15 @@ class MyFrame : public QFrame
 public:
     MyFrame(QWidget *w);
     void paintEvent(QPaintEvent *e);
+    QList<Object*> displayFile;
 public slots:
     void draw();
     void scaleObject();
     void rotateObject();
-    void moveWindow(int x, int y);
+//    void moveWindow(int x, int y);
 
-    void moveWindowLeft();
-    void moveWindowRight();
+//    void moveWindowLeft();
+//    void moveWindowRight();
 };
 
 #endif // MYFRAME_H

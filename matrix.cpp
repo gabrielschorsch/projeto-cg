@@ -8,128 +8,60 @@ using namespace std;
 
 
 Matrix::Matrix(){
+    this->matrix[0][0] = 1;
+    this->matrix[1][0] = 0;
+    this->matrix[2][0] = 0;
+    this->matrix[0][1] = 0;
+    this->matrix[1][1] = 1;
+    this->matrix[2][1] = 0;
+    this->matrix[0][2] = 0;
+    this->matrix[1][2] = 0;
+    this->matrix[2][2] = 1;
 }
 
 
-Matrix::Matrix(QList<QPoint> *mPoints){
-    this->points = *mPoints;
+Matrix Matrix::scale(float sx, float sy){
+    Matrix m;
+    m.matrix[0][0] = sx;
+    m.matrix[1][1] = sy;
+
+    m = m * (*this);
+
+    return m;
 }
 
-void Matrix::scale(float sx, float sy){
 
-    //translate center point to origin
-    int minX=312321321,
-        minY=312321321,
-        maxX=0,
-        maxY=0;
+Matrix Matrix::translate(float dx, float dy){
+    Matrix m;
+    m.matrix[0][2] = dx;
+    m.matrix[1][2] = dy;
 
+    m = m * (*this);
 
-
-    //find min and max points
-    for(int i = 0; i < this->points.length();i++){
-
-        if(this->points[i].x() < minX){
-            minX = this->points[i].x();
-        }
-        if(this->points[i].x() > maxX){
-            maxX =this->points[i].x();
-        }
-
-        if(this->points[i].y() < minY){
-            minY = this->points[i].y();
-        }
-        if(this->points[i].y() > maxY){
-            maxY =this->points[i].y();
-        }
-
-    }
-
-    int centerX = (minX + maxX )/2,
-        centerY = (minY + maxY )/2;
-
-
-    this->translate(-centerX, -centerY);
-    for(int i = 0; i < this->points.length(); i++){
-        //for each point, multiply its coordinates by sx and sy
-    this->points[i].setX(
-        (this->points[i].x() * sx)
-        );
-
-    this->points[i].setY(
-        (this->points[i].y() * sy)
-        );
-    }
-    //translate back to place
-    this->translate(centerX, centerY);
+    return m;
 }
 
-void Matrix::appendPoint(int x, int y){
-    this->points.append(QPoint(x,y));
+Matrix Matrix::rotate(float angle){
+
+    Matrix m;
+    cout << "rotating" << endl;
+    m.matrix[0][0] = cos(angle*(PI/180));
+    m.matrix[1][0] = sin(angle*(PI/180));
+    m.matrix[0][1] = -sin(angle*(PI/180));
+    m.matrix[1][1] = cos(angle*(PI/180));
+
+    return m;
 }
 
-void Matrix::translate(float dx, float dy){
-    QList<QPoint> newList = this->points;
-    for(int i = 0; i < newList.length(); i++){
-        newList[i].setX(newList[i].x() + dx);
-        newList[i].setY(newList[i].y() + dy);
+Matrix Matrix::operator*(const Matrix& other) const {
+    Matrix m;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            m.matrix[i][j] = 0;
+            for (int k = 0; k < 3; k++) {
+                m.matrix[i][j] += matrix[i][k] * other.matrix[k][j];
+            }
+        }
     }
-    this->points = newList;
-}
-
-void Matrix::rotate(float angle){
-
-
-    int minX=this->points[0].x(),
-        minY=this->points[0].y(),
-        maxX=this->points[0].x(),
-        maxY=this->points[0].y();
-
-
-    angle = angle * PI / 180;
-
-
-
-    //find min and max points
-    for(int i = 0; i < this->points.length();i++){
-
-        if(this->points[i].x() < minX){
-            minX = this->points[i].x();
-        }
-        if(this->points[i].x() > maxX){
-            maxX =this->points[i].x();
-        }
-
-        if(this->points[i].y() < minY){
-            minY = this->points[i].y();
-        }
-        if(this->points[i].y() > maxY){
-            maxY =this->points[i].y();
-        }
-
-    }
-
-
-    int pivotX = (minX + maxX )/ 2, pivotY = (minY + maxY )/ 2;
-
-    //translate to origin
-    this->translate(-pivotX, -pivotY);
-    for(int i = 0; i < this->points.length(); i++){
-        int x = this->points[i].x();
-        int y = this->points[i].y();
-        this->points[i].setX(
-            x*cos(angle) - y*sin(angle)
-            );
-
-        cout <<"point rotated from " << this->points[i].x() << "," << this->points[i].y();
-        this->points[i].setY(
-            x*sin(angle) + y*cos(angle)
-            );
-
-
-
-        cout <<" to " << this->points[i].x() << "," << this->points[i].y() << endl;
-    }
-    //translate back to place
-    this->translate(pivotX, pivotY);
-
+    return m;
 }
