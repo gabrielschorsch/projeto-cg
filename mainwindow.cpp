@@ -8,7 +8,6 @@
 #include "window.h"
 #include "transformations.h"
 #include "iostream"
-#include "clipping.h"
 
 using namespace std;
 
@@ -23,9 +22,6 @@ int WINDOW_X_MIN = 0;
 int WINDOW_X_MAX = 800;
 int WINDOW_Y_MIN = 0;
 int WINDOW_Y_MAX = 800;
-
-
-QList<QPoint> windowPoints = {QPoint(-200,0), QPoint(200,0)};
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -73,34 +69,20 @@ void MainWindow::paintEvent(QPaintEvent *event){
 
     viewport.draw(&painter);
 
-    Window window;
-    Clipping clipping(windowPoints);
 
     QPen pen2;
     pen2.setColor(Qt::blue);
     pen2.setWidth(0);
     pen2.setColor(Qt::red);
     painter.setPen(pen2);
-<<<<<<< HEAD
-    Rect scaled(scaledPoints);
-    QList<QPoint> rotatedPoints = t.rotate(scaledPoints, 45);
-    Rect rotated(rotatedPoints);
-    displayFile.append(&scaled);
-    displayFile.append(&rotated);
+    QList<QPoint> rotated = t.rotate(scaledPoints, 45);
+    Rect scaled(rotated);
 
-    for(Object *obj : displayFile){
-//        obj->lines = clipping.clip(obj->lines);
-        obj->draw(&painter);
-
-    }
-=======
-
-    Rect scaled(scaledPoints);
->>>>>>> parent of 8804100... rotation working
+    scaled.draw(&painter);
 
 
 
-
+    Window window;
 
     window.convertToViewport(0,0,WINDOW_X_MAX, WINDOW_Y_MAX, WINDOW_X_MIN, WINDOW_Y_MIN, VIEWPORT_X_MAX, VIEWPORT_Y_MAX, VIEWPORT_X_MIN, VIEWPORT_Y_MIN);
 

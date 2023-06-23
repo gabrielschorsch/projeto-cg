@@ -23,15 +23,6 @@ Rect::Rect(QList<QPoint> points)
     this->points.append((points.at(1)));
     this->points.append((points.at(2)));
     this->points.append((points.at(3)));
-    QLine l1((points.at(0)), (points.at(1)));
-    QLine l2((points.at(0)), (points.at(3)));
-    QLine l3((points.at(1)), (points.at(2)));
-    QLine l4((points.at(2)), (points.at(3)));
-    this->lines.append(&l1);
-    this->lines.append(&l2);
-    this->lines.append(&l3);
-    this->lines.append(&l4);
-
 }
 
 
@@ -39,5 +30,8 @@ Rect::Rect(QList<QPoint> points)
 
 void Rect::draw(QPainter* pen){
     cout << this->points.length() << endl;
-    cout << this->lines.length() << endl;
+    pen->drawLine((this->points.at(0)), (this->points.at(1)));
+    pen->drawLine((this->points.at(0)), (this->points.at(2)));
+    pen->drawLine((this->points.at(1)), (this->points.at(3)));
+    pen->drawLine((this->points.at(2)), (this->points.at(3)));
 }
