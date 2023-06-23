@@ -4,7 +4,9 @@
 #include <QObject>
 #include <matrix.h>
 #include <QPainter>
+#include <QLine>
 #include "point.h"
+#include "line.h"
 
 class Object
 {
@@ -12,6 +14,7 @@ private:
     Point getObjectCenterPoint();
 public:
     QList<Point*> points;
+    QList<QLine*> lines;
     Object();
     void rotate(int degrees);
 

@@ -9,6 +9,15 @@ Point::Point(float x, float y){
     this->x = x;
     this->y = y;
 }
+
+Point::Point(double x, double y, double z)
+{
+    this->x = x;
+    this->y = y;
+    this->z = z;
+}
+
+
 QList<QPoint> Point::transformPointToQPoint(QList<Point> list){
     QList<QPoint> newList;
     for(Point p : list){

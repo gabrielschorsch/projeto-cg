@@ -9,10 +9,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    clipping.cpp \
+    line.cpp \
     main.cpp \
     mainwindow.cpp \
     matrix.cpp \
-    myframe.cpp \
     object.cpp \
     point.cpp \
     rect.cpp \
@@ -20,9 +21,10 @@ SOURCES += \
     window.cpp
 
 HEADERS += \
+    clipping.h \
+    line.h \
     mainwindow.h \
     matrix.h \
-    myframe.h \
     object.h \
     point.h \
     rect.h \
