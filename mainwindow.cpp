@@ -75,8 +75,8 @@ void MainWindow::paintEvent(QPaintEvent *event){
     pen2.setWidth(0);
     pen2.setColor(Qt::red);
     painter.setPen(pen2);
-
-    Rect scaled(scaledPoints);
+    QList<QPoint> rotated = t.rotate(scaledPoints, 45);
+    Rect scaled(rotated);
 
     scaled.draw(&painter);
 
