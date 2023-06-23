@@ -81,6 +81,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
     pen2.setWidth(0);
     pen2.setColor(Qt::red);
     painter.setPen(pen2);
+<<<<<<< HEAD
     Rect scaled(scaledPoints);
     QList<QPoint> rotatedPoints = t.rotate(scaledPoints, 45);
     Rect rotated(rotatedPoints);
@@ -92,6 +93,10 @@ void MainWindow::paintEvent(QPaintEvent *event){
         obj->draw(&painter);
 
     }
+=======
+
+    Rect scaled(scaledPoints);
+>>>>>>> parent of 8804100... rotation working
 
 
 

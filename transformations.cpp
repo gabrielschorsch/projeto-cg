@@ -1,57 +1,13 @@
 #include "transformations.h"
-#include <math.h>
-#define PI 3.14159
 
 transformations::transformations()
 {
 
 }
 
-QList<QPoint> transformations::rotate(QList<QPoint> points, float angle){
-    float result[3][1];
-    float r[3][3];
-    float p[3][1];
+QList<QPoint> transformations::rotate(QList<QPoint> points, float rotationAngle){
 
-    QList<QPoint> resultList;
-    QList<QPoint> originPoints = this->translate(points, -points.at(0).x(),-points.at(0).y());
-
-    for(int i = 0; i < 3; i++){
-        result[i][0] = 0;
-    }
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            if(i == j){
-                r[i][j] = 1;
-            } else {
-                r[i][j] = 0;
-            }
-        }
-    }
-    r[0][0] = cos((PI/180) * angle);
-    r[1][0] = sin((PI/180) * angle);
-    r[0][1] = -sin((PI/180) * angle);
-    r[1][1] = cos((PI/180) * angle);
-
-    for(QPoint p1 : originPoints){
-          p[0][0] = p1.x();
-          p[1][0] = p1.y();
-          p[2][0] = 1;
-
-        for(int i=0; i<3; i++){
-              float sum = 0;
-              for(int j=0; j<3; j++){
-                  sum += r[i][j] * p[j][0];
-              }
-              result[i][0] = sum;
-          }
-          QPoint translatedPoint(result[0][0], result[1][0]);
-          resultList.append(translatedPoint);
-    }
-    resultList = this->translate(resultList, points.at(0).x(),points.at(0).y());
-
-    return resultList;
 }
-
 
 QList<QPoint> transformations::scale(QList<QPoint> points, float sx, float sy){
     float result[3][1];
