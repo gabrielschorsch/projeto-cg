@@ -9,8 +9,56 @@ QList<QPoint> transformations::rotate(QList<QPoint> points, float rotationAngle)
 
 }
 
-QList<QPoint> transformations::scale(QList<QPoint> points, float sX, float sY){
+QList<QPoint> transformations::scale(QList<QPoint> points, float sx, float sy){
+    float result[3][1];
+    float s[3][3];
+    float p[3][1];
 
+    QList<QPoint> resultList;
+
+
+    result[0][0] = 0;
+    result[1][0] = 0;
+    result[2][0] = 0;
+
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            if(j == i){
+                switch(i){
+                case 0:
+                    s[i][j] = sx;
+                    break;
+                case 1:
+                    s[i][j] = sy;
+                    break;
+                default:
+                    s[i][j] = 1;
+                }
+            } else {
+                s[i][j] = 0;
+            }
+        }
+    }
+    QList<QPoint> originPoints = this->translate(points, -points.at(0).x(),-points.at(0).y());
+
+    for(QPoint p1 : originPoints){
+        p[0][0] = p1.x();
+        p[1][0] = p1.y();
+        p[2][0] = 1;
+
+        for(int i=0; i<3; i++){
+            float sum = 0;
+            for(int j=0; j<3; j++){
+                sum += s[i][j] * p[j][0];
+            }
+            result[i][0] = sum;
+        }
+        QPoint translatedPoint(result[0][0], result[1][0]);
+        resultList.append(translatedPoint);
+    }
+
+    QList<QPoint> retranslatedPoints = this->translate(resultList,points.at(0).x(),points.at(0).y());
+    return retranslatedPoints;
 }
 
 QList<QPoint> transformations::translate(QList<QPoint> points, float dx, float dy){

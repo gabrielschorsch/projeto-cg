@@ -12,7 +12,7 @@
 using namespace std;
 
 
-int VIEWPORT_X_MIN = 250;
+int VIEWPORT_X_MIN = 150;
 int VIEWPORT_X_MAX = VIEWPORT_X_MIN + 500;
 int VIEWPORT_Y_MIN = 10;
 int VIEWPORT_Y_MAX = VIEWPORT_Y_MIN + 500;
@@ -53,17 +53,20 @@ void MainWindow::paintEvent(QPaintEvent *event){
     };
 
     transformations t;
-    QList<QPoint> translatedPoints = t.translate(viewportPoints,100,100);
-    cout << "Viewport points:" << endl;
+    cout << "Viewport points" << endl;
     for(QPoint p : viewportPoints){
-        cout <<"Ponto v: " << p.x() << "," << p.y() << endl;
-    }
-    cout << "Translated points:" << endl;
-    for(QPoint p : translatedPoints){
-        cout <<"Ponto t: " << p.x() << "," << p.y() << endl;
+        cout << p.x() << "," << p.y() << endl;
     }
 
-    Rect viewport(translatedPoints);
+    QList<QPoint> scaledPoints = t.scale(viewportPoints,.25,.25);
+
+    cout << "Scale scale" << endl;
+    for(QPoint p : scaledPoints){
+        cout << p.x() << "," << p.y() << endl;
+    }
+
+    Rect viewport(viewportPoints);
+
     viewport.draw(&painter);
 
 
@@ -72,6 +75,12 @@ void MainWindow::paintEvent(QPaintEvent *event){
     pen2.setWidth(0);
     pen2.setColor(Qt::red);
     painter.setPen(pen2);
+
+    Rect scaled(scaledPoints);
+
+    scaled.draw(&painter);
+
+
 
     Window window;
 
